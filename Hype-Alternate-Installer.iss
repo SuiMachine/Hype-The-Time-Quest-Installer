@@ -27,7 +27,7 @@ AppVersion={#MyAppVersion}
 VersionInfoVersion={#MyAppInstallerVersion}
 AppPublisher={#MyAppPublisher}
 AppCopyright=© 1999 {#MyAppPublisher}
-LicenseFile=license.txt
+LicenseFile=license.md
 ; Start menu/screen and Desktop shortcuts
 DefaultDirName={sd}\Games\{#MyAppNameNoR}
 DefaultGroupName=Ubisoft\{#MyAppNameNoR}
@@ -118,7 +118,9 @@ Source: "{code:GetSourceDrive}DSETUP.DLL"; DestDir: "{win}\UbiSoft"; Flags: exte
 Source: "{code:GetSourceDrive}DSETUP16.DLL"; DestDir: "{win}\UbiSoft"; Flags: external ignoreversion
 Source: "{code:GetSourceDrive}DSETUP32.DLL"; DestDir: "{win}\UbiSoft"; Flags: external ignoreversion
 Source: "{code:GetSourceDrive}SetupUbi.exe"; DestDir: "{win}\UbiSoft"; Flags: external ignoreversion
-Source: "{code:GetSourceDrive}InstData\strings.eng"; DestDir: "{win}\UbiSoft"; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}InstData\strings.eng"; DestDir: "{win}\UbiSoft"; Flags: external ignoreversion; Components: language\english language\french language\polish 
+Source: "{code:GetSourceDrive}InstData\strings.ger"; DestDir: "{win}\UbiSoft"; Flags: external ignoreversion; Components: language\german
+
  
 ; Install stuff
 Source: "Stuff\Comp\*"; DestDir: "{app}\Comp\";
@@ -139,7 +141,7 @@ Name: "{group}\Websites\Hype Forever"; Filename: "http://hypeforever.webs.com/"
 [Tasks]
 ; Create a desktop icon, run with administrator rights
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}";
-Name: "nglide"; Description: "{cm:InstallnGlide}";
+Name: "nglide"; Description: "Install nGlide";
 
 [INI]
 Filename: "{win}\UbiSoft\ubi.ini"; Section: "Hype - The Time Quest"; Key: "Directory"; String: "{app}";
@@ -149,8 +151,8 @@ Filename: "{win}\UbiSoft\ubi.ini"; Section: "Hype - The Time Quest"; Key: "Langu
 Filename: "{win}\UbiSoft\ubi.ini"; Section: "Hype - The Time Quest"; Key: "Language"; String: "Polish"; Components: language\polish
 
 [Run]
-Filename: "{app}\Comp\PatchInstall.bat"; StatusMsg: "{cm:StatusInstallingCompatibilityFixes}"; Flags: runascurrentuser
-Filename: "{app}\nGlide103_setup.exe"; StatusMsg: "{cm:StatusInstallingnGlide}"; Flags: runascurrentuser; Tasks: nglide
+Filename: "{app}\Comp\PatchInstall.bat"; StatusMsg: "Installing Compatibility Fixes"; Flags: runascurrentuser
+Filename: "{app}\nGlide103_setup.exe"; StatusMsg: "Installing nGlide"; Flags: runascurrentuser; Tasks: nglide
 
 
 [UninstallDelete]
